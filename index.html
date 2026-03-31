@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Solutions | The Clean Stack for AI & Web</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    colors: {
+                        laravel: { red: '#FF2D20', dark: '#050505' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #050505; color: #a1a1aa; overflow-x: hidden; }
+        /* Laravel Grid Intersection Nodes */
+        .grid-node {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: #FF2D20;
+            z-index: 20;
+        }
+        .node-tl { top: -2.5px; left: -2.5px; }
+        .node-tr { top: -2.5px; right: -2.5px; }
+        .node-bl { bottom: -2.5px; left: -2.5px; }
+        .node-br { bottom: -2.5px; right: -2.5px; }
+        /* Subtle global noise to match the technical aesthetic */
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.02;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased relative">
+    
+    <div class="fixed inset-0 bg-noise z-0"></div>
+
+    <!-- Navigation -->
+    <nav class="w-full border-b border-white/[0.08] sticky top-0 bg-[#050505]/90 backdrop-blur-md z-50">
+        <div class="max-w-[1280px] mx-auto h-16 flex items-center justify-between px-6 relative">
+            
+            <div class="flex items-center gap-8">
+                <!-- Geometrical Logo -->
+                <div class="flex items-center gap-3">
+                    <svg viewBox="0 0 48 48" class="w-7 h-7 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
+                    </svg>
+                    <span class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">AI Solutions</span>
+                </div>
+                <!-- Links -->
+                <div class="hidden md:flex items-center space-x-6 text-[14px] font-medium text-gray-400">
+                    <a href="#" class="hover:text-white transition group flex items-center gap-1">Plataforma <svg class="w-3 h-3 opacity-50 text-white group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
+                    <a href="#" class="hover:text-white transition group flex items-center gap-1">Soluções <svg class="w-3 h-3 opacity-50 text-white group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
+                    <a href="#pricing" class="hover:text-white transition">Preços</a>
+                    <a href="#" class="hover:text-white transition">Documentação</a>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] text-gray-400 text-xs cursor-pointer transition">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <span>Search docs</span>
+                    <span class="border border-white/10 rounded px-1 ml-4 tracking-widest text-[10px]">⌘K</span>
+                </div>
+                <a href="#" class="text-sm font-medium text-gray-400 hover:text-white transition hidden md:block border-l border-white/[0.08] pl-4">Entrar <span class="opacity-50 inline-block ml-0.5 mt-0.5">&#8595;</span></a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="w-full border-b border-white/[0.08] relative z-10 overflow-hidden">
+        <!-- Optional red ambient glow behind code -->
+        <div class="absolute top-[20%] right-[10%] w-[500px] h-[500px] bg-laravel-red/10 blur-[150px] rounded-full pointer-events-none z-[-1]"></div>
+        
+        <div class="max-w-[1280px] mx-auto relative px-6 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-16 transition">
+            
+            <!-- Left Text -->
+            <div class="w-full lg:w-1/2 flex flex-col items-start lg:pr-6">
+                <h1 class="text-[2.75rem] md:text-[3.5rem] lg:text-[4rem] font-bold text-white leading-[1.08] tracking-tight mb-8 whitespace-nowrap">
+                    Deixe a IA assumir <br>
+                    <span class="text-laravel-red font-medium">a sua operação.</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-xl leading-relaxed">
+                    Você não precisa mais gastar tempo com tarefas lentas e braçais. Conectamos sistemas web robustos às inteligências artificiais <span class="text-gray-200 font-medium">para assumir e automatizar a maior parte do projeto da sua empresa.</span> Seu time foca 100% no crescimento, enquanto o nosso software faz o trabalho duro incansavelmente.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-100 text-[#050505] font-bold rounded shadow-[0_4px_30px_0_rgba(255,255,255,0.15)] transition hover:shadow-[0_4px_45px_0_rgba(255,255,255,0.25)] hover:-translate-y-1 flex items-center justify-center gap-2">
+                        Reservar Especialista
+                    </a>
+                    <a href="#" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/[0.05] text-gray-300 font-semibold rounded transition flex items-center justify-center gap-2">
+                        Entender o impacto
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right Visual (Code IDE Mockup) -->
+            <div class="w-full lg:w-1/2 relative z-10 flex items-center justify-center">
+                <!-- Background Isometric Grid (Subtle) -->
+                <div class="absolute -inset-10 lg:-inset-20 z-[-1] opacity-[0.07] pointer-events-none mix-blend-screen" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'34\' viewBox=\'0 0 60 34\'%3E%3Cpath d=\'M30 0L60 17L30 34L0 17Z\' fill=\'none\' stroke=\'rgba(255,255,255,0.6)\' stroke-width=\'0.5\'/%3E%3C/svg%3E'); background-size: 60px 34px; mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);"></div>
+
+                <div class="rounded-lg bg-[#0a0a0a]/80 backdrop-blur-md border border-white/[0.08] shadow-2xl overflow-hidden flex flex-col w-full relative">
+                    <!-- Mac Window Controls -->
+                    <div class="flex items-center gap-2 px-4 py-3 border-b border-white/[0.05] bg-white/[0.01]">
+                        <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                        <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
+                        <div class="mx-auto text-[11px] font-mono text-gray-500">app/Platform/IntelligentEngine.ts</div>
+                    </div>
+                    <!-- Code Area -->
+                    <div class="p-6 font-mono text-sm leading-[1.6] text-gray-300 overflow-x-auto min-h-[300px]">
+<pre><code><span class="text-gray-500">/**
+ * AI Solutions - Full-stack framework
+ */</span>
+<span class="text-[#ff7b72] opacity-80">import</span> { App, Database } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/core'</span>;
+<span class="text-[#ff7b72] opacity-80">import</span> { LLM_Agent, VectorDB } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/intel'</span>;
+
+<span class="text-[#79c0ff]">const</span> stack = <span class="text-[#ff7b72] opacity-80">new</span> App({
+    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'postgresql cluster'</span>)
+});
+
+<span class="text-[#79c0ff]">const</span> brain = <span class="text-[#ff7b72] opacity-80">new</span> LLM_Agent({
+    mcp: <span class="text-[#79c0ff]">true</span>,
+    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'realtime'</span> })
+});
+
+stack.attach(brain);
+
+stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="text-[#ff7b72] opacity-80">=></span> {
+    console.log(<span class="text-[#a5d6ff]">'🚀 AI Engine operational with RAG.'</span>);
+});</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Trusted By / Logos Section (Squared Grid) -->
+    <section class="w-full border-b border-white/[0.08] relative bg-[#0a0a0a]">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-2 lg:grid-cols-5">
+            <div class="grid-node node-tl"></div>
+            <div class="grid-node node-tr"></div>
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            
+            <!-- Label -->
+            <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-6 lg:p-8 flex flex-col items-start justify-center gap-1 opacity-90 relative hover:bg-white/[0.02] transition">
+                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[2px] h-[40%] bg-laravel-red"></div>
+                <span class="text-[10px] md:text-[11px] uppercase tracking-[0.2em] text-gray-500 font-bold">Empresas que</span>
+                <span class="text-xs md:text-sm uppercase tracking-widest text-white font-semibold">Confiam no Projeto</span>
+            </div>
+
+            <!-- Items -->
+            <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100">
+                <span class="text-white font-extrabold tracking-tight text-xl">ACME Corp</span>
+            </div>
+            <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100">
+                <span class="text-blue-500 font-bold text-xl flex items-center gap-1"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg> TECHNO</span>
+            </div>
+            <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100">
+                <span class="text-yellow-500 font-serif italic text-xl font-bold">Lemon<span class="text-white">Squeezy</span></span>
+            </div>
+            <div class="w-full border-b lg:border-b-0 p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100 relative group">
+                <!-- Inner grid node trick just to look cool -->
+                <div class="absolute w-[3px] h-[3px] bg-laravel-red -bottom-[1px] -left-[1px] opacity-0 group-hover:opacity-100"></div>
+                <span class="text-white font-black tracking-widest text-lg">N E X U S</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Big Title Section -->
+    <section class="w-full border-b border-white/[0.08] relative bg-[#050505]">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative px-6 py-28 text-center flex flex-col items-center justify-center">
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            <h2 class="text-[2.5rem] md:text-[3.5rem] font-bold text-white tracking-tight leading-tight">
+                Lance sistemas web com um <br>
+                framework <span class="bg-laravel-red whitespace-nowrap px-3 pt-1 pb-1.5 mx-1 rounded-sm text-white inline-flex items-center gap-2 transform -translate-y-1 shadow-[0_4px_14px_0_rgba(255,45,32,0.39)]">habilitado para IA</span>
+            </h2>
+        </div>
+    </section>
+
+    <!-- Features Squared Grid -->
+    <section class="w-full border-b border-white/[0.08] relative bg-[#050505]">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-1 md:grid-cols-2">
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/2 -top-[2.5px] -translate-x-1/2 hidden md:block z-10"></div>
+            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/2 -bottom-[2.5px] -translate-x-1/2 hidden md:block z-10"></div>
+
+            <!-- Feature 1 (Business) -->
+            <div class="border-b border-r border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Automação de Tarefas Operacionais</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">Chega de trabalho manual lento e retrabalho. Conectamos sua inteligência artificial para ler e-mails, organizar arquivos, gerar relatórios e interagir diretamente com o sistema da sua empresa, automatizando tudo enquanto seu time foca nas vendas.</p>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Reduzir Custos <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
+            </div>
+
+            <!-- Feature 2 (Business) -->
+            <div class="border-b border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                </div>
+                <!-- Requested mention of Chatbots and Support -->
+                <h3 class="text-2xl font-bold text-white mb-4">Chatbots de Atendimento Próprios</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">Suporte impressionante e especializado. Criamos Inteligências Artificiais treinadas estritamente com os manuais e regras da sua empresa. Seu novo robô não inventa informação e responde a clientes com uma precisão impecável 24 horas por dia.</p>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Melhorar a Conversão <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
+            </div>
+
+            <!-- Feature 3 (Tech) -->
+            <div class="border-b border-r border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">RAG Avançado Nativo</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">Para alcançar respostas reais livres de "alucinações" de IA, implementamos Bancos de Dados Vetoriais ultra-rápidos. A IA consulta em tempo-real toda a base de conhecimento estruturada da sua corporação (Retrieval-Augmented) antes de fornecer dados.</p>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Engine de Vetores <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
+            </div>
+
+            <!-- Feature 4 (Tech) -->
+            <div class="border-b border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">MCP & Agentes Autônomos</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">Conectamos o "cérebro" das arquitetura LLMs aos "braços" do seu software diário. Através do Model Context Protocol, garantimos que agentes autônomos possuam as integrações exatas e permissões nativas para operar em suas APIs corporativas com segurança.</p>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Ecossistema MCP <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
+            </div>
+
+            <!-- Feature 5 (Cloud) -->
+            <div class="border-b md:border-b-0 border-r border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Cloud Customizada Exclusiva</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">Projetamos e mantemos a infraestrutura em nuvem de ponta a ponta. Sua arquitetura é preparada estritamente sob medida para receber altos picos de acessos e tráfego intenso através de balanceamento de carga, garantindo estabilidade blindada.</p>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Alta Disponibilidade <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
+            </div>
+
+            <!-- Feature 6 (Scale) -->
+            <div class="p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-4">Totalmente Escalável</h3>
+                <p class="text-gray-400 leading-relaxed mb-6">Sua inteligência artificial e banco de dados se expandem horizontalmente à medida que a base de clientes cresce. Sem gargalos de lentidão. Nossa engenharia suporta desde um MVP ágil até a tração massiva de milhões de requisições.</p>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Crescimento Automático <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Feature 3 (Full width text code block intersection) -->
+    <section class="w-full border-b border-white/[0.08] relative bg-[#0a0a0a]/50">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative p-12 lg:p-24 flex flex-col md:flex-row items-center gap-12">
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            
+            <div class="w-full md:w-1/2">
+                <h3 class="text-3xl lg:text-4xl font-bold text-white mb-6">Modelos Especializados, controle total de custos.</h3>
+                <p class="text-gray-400 leading-relaxed text-lg lg:text-xl">
+                    Utilizar IA no núcleo do seu negócio não precisa prender seus dados na nuvem da OpenAI ou gerar faturas impagáveis. Nós podemos instalar supermodelos abertos e totalmente customizados via <span class="text-white font-medium">Fine-Tuning (Modelos LLaMA 3, Mistral, etc) dentro da sua própria infraestrutura</span>, gerando respostas ultrarrápidas com total privacidade e até 70% de redução de custo arquitetural.
+                </p>
+            </div>
+            <div class="w-full md:w-1/2 border border-white/[0.08] bg-[#050505] rounded-md overflow-hidden relative">
+                <div class="absolute w-[5px] h-[5px] bg-laravel-red top-0 left-0"></div>
+                <div class="p-4 border-b border-white/[0.08] text-xs font-mono text-gray-500">model.config.json</div>
+                <div class="p-6 font-mono text-xs text-gray-400 flex flex-col gap-2">
+                    <p>{ </p>
+                    <p class="pl-4">"engine": <span class="text-green-400">"Llama-3-70B-Instruct"</span>,</p>
+                    <p class="pl-4">"fine_tune": <span class="text-[#ff7b72]">true</span>,</p>
+                    <p class="pl-4">"quantization": <span class="text-green-400">"4-bit"</span>,</p>
+                    <p class="pl-4">"deployment": <span class="text-green-400">"edge-optimized"</span>,</p>
+                    <p class="pl-4">"max_latency_ms": <span class="text-[#79c0ff]">150</span></p>
+                    <p>} </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="w-full border-b border-white/[0.08] relative bg-[#050505] overflow-hidden">
+        <!-- Background Gradients (matching the soft bottom-corners glow from the image) -->
+        <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-laravel-red/10 blur-[150px] rounded-full pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
+        <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-laravel-red/10 blur-[150px] rounded-full pointer-events-none translate-y-1/2 translate-x-1/4"></div>
+        
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative px-6 lg:px-12 py-24 pb-32">
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            
+            <div class="text-center mb-16 relative z-10">
+                <h2 class="text-[2.25rem] md:text-[3.25rem] font-bold text-white tracking-tight leading-tight">
+                    Confiado por diretores de TI<br>em todo o mundo
+                </h2>
+            </div>
+
+            <!-- Testimonials Grid Masonry-style -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                
+                <!-- Col 1 -->
+                <div class="flex flex-col gap-6">
+                    <!-- Highlighted Tall (First) -->
+                    <div class="bg-gradient-to-br from-[#1a0505] to-[#0a0a0a] border border-laravel-red/30 rounded-2xl py-10 px-8 flex flex-col shadow-[0_4px_30px_rgba(255,45,32,0.1)] h-full lg:min-h-[380px] group transition hover:-translate-y-1">
+                        <div class="flex items-center gap-2 mb-6">
+                           <svg viewBox="0 0 48 48" class="w-5 h-5 text-white fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/></svg> 
+                           <span class="text-white font-bold tracking-tight">AI Solutions</span>
+                        </div>
+                        <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"Tenho utilizado a arquitetura de vocês por meses e nunca me senti tentado a mudar o stack de IA da minha empresa para nenhuma outra base tecnológica."</p>
+                        <div class="flex items-center gap-4 mt-8">
+                            <img src="https://i.pravatar.cc/100?img=11" alt="Adam" class="w-10 h-10 rounded-full border border-white/20">
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Pedro Sampaio</h4>
+                                <p class="text-gray-500 text-xs text-laravel-red font-medium">Fundador, TailwindTech</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Normal Short -->
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Uma arquitetura que é como um respiro de ar fresco. Integrações brilhantes, MCPs impecáveis e código absurdamente elegante."</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <h4 class="text-gray-200 font-bold text-sm">Erika Souza</h4>
+                                <p class="text-gray-500 text-xs">Criadora, MiniCLI</p>
+                            </div>
+                            <img src="https://i.pravatar.cc/100?img=9" alt="Erika" class="w-10 h-10 rounded-full border border-white/10">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div class="flex flex-col gap-6">
+                    <!-- Normal Short -->
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Esses modelos especializados operam de forma perfeita no dia-a-dia da nossa operação em larga escala."</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <h4 class="text-gray-200 font-bold text-sm">Ian Callahan</h4>
+                                <p class="text-gray-500 text-xs">Harvard Art Museums</p>
+                            </div>
+                            <img src="https://i.pravatar.cc/100?img=12" alt="Ian" class="w-10 h-10 rounded-full border border-white/10">
+                        </div>
+                    </div>
+                    
+                    <!-- Normal Short -->
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Elegância dos sistemas web combinada à inteligência artificial de forma magistral. O melhor do mercado."</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <h4 class="text-gray-200 font-bold text-sm">Chandresh Patel</h4>
+                                <p class="text-gray-500 text-xs">CEO, Bacancy</p>
+                            </div>
+                            <img src="https://i.pravatar.cc/100?img=13" alt="Chandresh" class="w-10 h-10 rounded-full border border-white/10">
+                        </div>
+                    </div>
+
+                    <!-- Normal Short -->
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"O framework, a fundação e a IA atuando em RAG... É o pacote inteiro pronto em semanas."</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <h4 class="text-gray-200 font-bold text-sm">Zuzana Kunckova</h4>
+                                <p class="text-gray-500 text-xs">Fundadora, Larabelles</p>
+                            </div>
+                            <img src="https://i.pravatar.cc/100?img=33" alt="Zuzana" class="w-10 h-10 rounded-full border border-white/10">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="flex flex-col gap-6">
+                    <!-- Normal Short -->
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Adicionar LLMs tirou todo o sofrimento de construir as nossas novas bases de conhecimento interativas."</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <h4 class="text-gray-200 font-bold text-sm">Aaron Francis</h4>
+                                <p class="text-gray-500 text-xs">Try Hard Studios</p>
+                            </div>
+                            <img src="https://i.pravatar.cc/100?img=15" alt="Aaron" class="w-10 h-10 rounded-full border border-white/10">
+                        </div>
+                    </div>
+
+                    <!-- Highlighted Tall (Last) -->
+                    <div class="bg-gradient-to-br from-[#1a0505] to-[#0a0a0a] border border-laravel-red/30 rounded-2xl py-10 px-8 flex flex-col shadow-[0_4px_30px_rgba(255,45,32,0.1)] h-full lg:min-h-[380px] group transition hover:-translate-y-1">
+                        <div class="flex items-center gap-1 opacity-80 mb-6 font-mono text-white text-sm">
+                            fathom_AI /
+                        </div>
+                        <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"A plataforma de AI Solutions de vocês mudou o jogo de Fathom. O poder desse código nos permite andar rápido e shipar melhorias regularmente."</p>
+                        <div class="flex items-center gap-4 mt-8">
+                            <img src="https://i.pravatar.cc/100?img=17" alt="Jack" class="w-10 h-10 rounded-full border border-white/20">
+                            <div>
+                                <h4 class="text-white font-bold text-sm">Renato Ellis</h4>
+                                <p class="text-gray-500 text-xs text-laravel-red font-medium">Founder, Fathom Analytics</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="w-full border-b border-white/[0.08] relative bg-[#050505]" id="pricing">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-1 lg:grid-cols-3">
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/3 -top-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
+            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-[66.666%] -top-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
+            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/3 -bottom-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
+            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-[66.666%] -bottom-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
+            
+            <!-- Pricing 1 -->
+            <div class="border-b lg:border-b-0 border-r border-white/[0.08] p-12 relative flex flex-col group hover:bg-[#0a0a0a] transition">
+                <h3 class="text-xl font-bold text-gray-200 mb-1 tracking-tight">MVP AI Web</h3>
+                <p class="text-sm text-gray-500 mb-8 border-b border-white/[0.08] pb-8">Validação de ideia e prototipagem inteligente estruturada em frameworks modernos.</p>
+                <div class="text-4xl font-bold text-white tracking-tighter mb-8"><span class="text-xl align-top text-gray-500 font-normal">Custo: P/</span>Projeto</div>
+                <div class="flex-grow">
+                    <ul class="text-sm text-gray-400 space-y-3 font-medium">
+                        <li class="flex gap-2">✓ Arquiteturas Modernas de Backend</li>
+                        <li class="flex gap-2">✓ Integração padrão API (OpenAI/Anthropic)</li>
+                        <li class="flex gap-2">✓ Lógica e Banco de Dados Limpo</li>
+                    </ul>
+                </div>
+                <button class="mt-12 w-full py-2.5 border border-white/20 text-white rounded text-sm font-semibold hover:bg-white hover:text-black transition">Conversar Agora</button>
+            </div>
+
+            <!-- Pricing 2 -->
+            <div class="border-b lg:border-b-0 border-r border-[#FF2D20]/40 bg-[#0a0a0a] p-12 relative flex flex-col shadow-[inset_0_0_80px_rgba(255,45,32,0.03)] opacity-100 z-10">
+                <div class="absolute top-0 right-0 bg-laravel-red text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded-bl-lg">Enterprise</div>
+                <h3 class="text-xl font-bold text-laravel-red mb-1 tracking-tight">Escala & IAs Híbridas</h3>
+                <p class="text-sm text-gray-400 mb-8 border-b border-white/[0.08] pb-8">Automação de múltiplos agentes em sistemas críticos que não podem falhar ou alucinar.</p>
+                <div class="text-4xl font-bold text-white tracking-tighter mb-8"><span class="text-xl align-top text-gray-500 font-normal mr-1">Retainer /</span>Fee</div>
+                <div class="flex-grow">
+                    <ul class="text-sm text-gray-300 space-y-3 font-medium">
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Tudo do plano MVP</li>
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> RAG nativo construído sobre Vector Databases Escalonáveis</li>
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Fine-tuning e Modelos Especializados Open Source</li>
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Integração Direta via MCP</li>
+                    </ul>
+                </div>
+                <button class="mt-12 w-full py-2.5 bg-laravel-red hover:bg-[#ff4d42] text-white rounded text-sm font-semibold transition shadow-md">Agendar Descoberta</button>
+            </div>
+
+            <!-- Pricing 3 -->
+            <div class="p-12 relative flex flex-col group hover:bg-[#0a0a0a] transition">
+                <h3 class="text-xl font-bold text-gray-200 mb-1 tracking-tight">Sprints Dedicados</h3>
+                <p class="text-sm text-gray-500 mb-8 border-b border-white/[0.08] pb-8">Estenda o laboratório da sua empresa com nossa arquitetura robusta por hora de codificação pesada.</p>
+                <div class="text-4xl font-bold text-white tracking-tighter mb-8"><span class="text-xl text-gray-500 align-top font-normal mr-1">R$</span>Hourly<span class="text-lg text-gray-500 font-normal">/mo</span></div>
+                <div class="flex-grow">
+                    <ul class="text-sm text-gray-400 space-y-3 font-medium">
+                        <li class="flex gap-2">✓ Equipe agindo como engenheiros Staff</li>
+                        <li class="flex gap-2">✓ Manutenção contínua de software</li>
+                        <li class="flex gap-2">✓ Arquitetura escalável modular</li>
+                    </ul>
+                </div>
+                <button class="mt-12 w-full py-2.5 border border-white/20 text-white rounded text-sm font-semibold hover:bg-white hover:text-black transition">Ver Pacotes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Grand Call to Action -->
+    <section class="w-full border-b border-white/[0.08] bg-[#050505] relative overflow-hidden">
+        <!-- Isometric Grid Background with Fade Gradient -->
+        <div class="absolute inset-0 z-0 opacity-15 pointer-events-none mix-blend-screen" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'34\' viewBox=\'0 0 60 34\'%3E%3Cpath d=\'M30 0L60 17L30 34L0 17Z\' fill=\'none\' stroke=\'rgba(255,255,255,0.7)\' stroke-width=\'0.5\'/%3E%3C/svg%3E'); background-size: 60px 34px; mask-image: linear-gradient(to bottom, transparent 50%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 100%);"></div>
+
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative px-6 py-32 md:py-48 text-center flex flex-col items-center justify-center z-10">
+            <div class="grid-node node-bl"></div>
+            <div class="grid-node node-br"></div>
+            
+            <h2 class="text-4xl md:text-[3.5rem] lg:text-[4.25rem] font-bold text-white tracking-tight leading-[1.08] mb-12">
+                Pronto para dominar o seu mercado?<br>
+                Vamos iniciar o seu projeto.
+            </h2>
+            
+            <div class="flex items-center justify-center">
+                <a href="#contact" class="px-12 py-5 bg-laravel-red hover:bg-[#ff4d42] text-white font-bold rounded shadow-[0_4px_14px_0_rgba(255,45,32,0.39)] transition flex items-center justify-center gap-3 text-lg hover:-translate-y-1 hover:shadow-[0_6px_25px_0_rgba(255,45,32,0.45)]">
+                    Agendar Especialista <span>&rarr;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Area (Grid Based) -->
+    <footer class="w-full relative bg-[#050505]">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-2 md:grid-cols-4 py-16">
+            
+            <div class="col-span-2 md:col-span-1 p-8 pt-0">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg viewBox="0 0 48 48" class="w-5 h-5 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
+                    </svg>
+                    <span class="text-white font-bold tracking-tight">AI Solutions</span>
+                </div>
+                <p class="text-gray-500 text-xs leading-relaxed max-w-[200px]">A estrutura completa e limpa para Artesãos Modernos e Agentes Criativos desenvolverem soluções inacreditáveis.</p>
+            </div>
+            
+            <div class="col-span-1 p-8 pt-0">
+                <h4 class="text-white font-bold text-sm mb-4">Arquitetura</h4>
+                <ul class="text-gray-500 text-xs space-y-2">
+                    <li><a href="#" class="hover:text-laravel-red transition">RAG Pipelines</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Vector Data</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Model Context Protocol</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Cloud Edge</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-1 p-8 pt-0">
+                <h4 class="text-white font-bold text-sm mb-4">Empresa</h4>
+                <ul class="text-gray-500 text-xs space-y-2">
+                    <li><a href="#" class="hover:text-laravel-red transition">Sobre Nós</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Clientes</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Blog</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-2 md:col-span-1 p-8 pt-0">
+                <h4 class="text-white font-bold text-sm mb-4">Recursos</h4>
+                <ul class="text-gray-500 text-xs space-y-2">
+                    <li><a href="#" class="hover:text-laravel-red transition">Documentação da API</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Casos de Uso Open Source</a></li>
+                    <li><a href="#" class="hover:text-laravel-red transition">Tutoriais Web AI</a></li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- Bottom Edge Footer border -->
+        <div class="max-w-[1280px] mx-auto border-x border-t border-white/[0.08] relative px-8 py-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 font-medium">
+            <div class="grid-node node-tl"></div>
+            <div class="grid-node node-tr"></div>
+            <p>&copy; 2026 AI Solutions Company. All rights reserved.</p>
+            <div class="flex gap-4 mt-4 sm:mt-0">
+                <a href="#" class="hover:text-laravel-red transition">Twitter</a>
+                <a href="#" class="hover:text-laravel-red transition">GitHub</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
