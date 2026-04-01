@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="dark">
 <head>
-    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="assets/favicon.png">    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Solutions | The Clean Stack for AI & Web</title>
+    <title>PROTOCOL // 21 | The Clean Stack for AI & Web</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts -->
@@ -30,39 +30,7 @@
     <link rel="stylesheet" href="assets/css/index.css">
     
     <!-- Typebot Integration Support -->
-    <script src="https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/index.js" type="module"></script>
-    <script type="module">
-        import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/index.js'
-
-        const typebotId = "my-typebot-ii4dib1";
-
-        window.openTypebot = (metadata = {}) => {
-            const urlParams = new URLSearchParams(window.location.search);
-            const utmParams = {
-                utm_source: urlParams.get('utm_source') || 'direct',
-                utm_medium: urlParams.get('utm_medium') || 'none',
-                utm_campaign: urlParams.get('utm_campaign') || 'none',
-                utm_content: urlParams.get('utm_content') || 'none',
-                utm_term: urlParams.get('utm_term') || 'none',
-                pagina_origem: metadata.pagina_origem || 'Home',
-                plano_interesse: metadata.plano_interesse || 'Geral'
-            };
-
-            if (window.Typebot) {
-                window.Typebot.initBubble({
-                    typebot: typebotId,
-                    previewMessage: {
-                        text: "Olá! Posso te ajudar a automatizar sua empresa?",
-                    },
-                    theme: {
-                        button: { backgroundColor: "#FF2D20", customIconSrc: "https://typebot.io/icons/whatsapp.svg" },
-                    },
-                    prefilledVariables: utmParams
-                });
-                window.Typebot.open();
-            }
-        };
-    </script>
+    <script type="module" src="assets/js/typebot.js"></script>
 </head>
 <body class="font-sans antialiased relative">
     
@@ -72,12 +40,11 @@
     <nav class="w-full border-b border-white/[0.08] sticky top-0 bg-[#050505]/90 backdrop-blur-md z-50">
         <div class="max-w-[1280px] mx-auto h-16 flex items-center justify-center px-6 relative">
             
-            <!-- Absolute Logo (Left) -->
             <div class="absolute left-6 flex items-center gap-3">
                 <svg viewBox="0 0 48 48" class="w-7 h-7 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
                 </svg>
-                <span class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">AI Solutions</span>
+                <span class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">PROTOCOL // 21</span>
             </div>
 
             <!-- Centralized Links -->
@@ -138,18 +105,18 @@
 <span class="typewriter-line anim-line-3 inline-block"><span class="text-[#ff7b72] opacity-80">import</span> { LLM_Agent, VectorDB } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/intel'</span>;</span>
 
 <span class="typewriter-line anim-line-4 inline-block"><span class="text-[#79c0ff]">const</span> stack = <span class="text-[#ff7b72] opacity-80">new</span> App({</span>
-<span class="typewriter-line anim-line-4 inline-block">    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'cluster postgresql'</span>)</span>
+    <span class="typewriter-line anim-line-4 inline-block">    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'cluster postgresql'</span>)</span>
 <span class="typewriter-line anim-line-4 inline-block">});</span>
 
 <span class="typewriter-line anim-line-5 inline-block"><span class="text-[#79c0ff]">const</span> cerebro = <span class="text-[#ff7b72] opacity-80">new</span> LLM_Agent({</span>
-<span class="typewriter-line anim-line-5 inline-block">    mcp: <span class="text-[#79c0ff]">true</span>,</span>
-<span class="typewriter-line anim-line-5 inline-block">    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'tempo-real'</span> })</span>
+    <span class="typewriter-line anim-line-5 inline-block">    mcp: <span class="text-[#79c0ff]">true</span>,</span>
+    <span class="typewriter-line anim-line-5 inline-block">    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'tempo-real'</span> })</span>
 <span class="typewriter-line anim-line-5 inline-block">});</span>
 
 <span class="typewriter-line anim-line-6 inline-block">stack.attach(cerebro);</span>
 
 <span class="typewriter-line anim-line-7 inline-block">stack.deploy(<span class="text-[#a5d6ff]">'producao'</span>, () <span class="text-[#ff7b72] opacity-80">=></span> {</span>
-<span class="typewriter-line anim-line-8 inline-block">    console.log(<span class="text-[#a5d6ff]">'🚀 Motor de IA operacional com RAG.'</span>);</span>
+    <span class="typewriter-line anim-line-8 inline-block">    console.log(<span class="text-[#a5d6ff]">'🚀 Motor de IA operacional com RAG.'</span>);</span>
 <span class="typewriter-line anim-line-9-done inline-block">});</span></code></pre>
                     </div>
                 </div>
@@ -332,7 +299,7 @@
                     <div class="bg-gradient-to-br from-[#1a0505] to-[#0a0a0a] border border-laravel-red/30 rounded-2xl py-10 px-8 flex flex-col shadow-[0_4px_30px_rgba(255,45,32,0.1)] h-full lg:min-h-[380px] group transition hover:-translate-y-1">
                         <div class="flex items-center gap-2 mb-6">
                            <svg viewBox="0 0 48 48" class="w-5 h-5 text-white fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/></svg> 
-                           <span class="text-white font-bold tracking-tight">AI Solutions</span>
+                           <span class="text-white font-bold tracking-tight">PROTOCOL // 21</span>
                         </div>
                         <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0a0a0a] border border-white/10 text-[10px] font-mono text-green-400 font-bold mb-4 uppercase tracking-widest self-start"><span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> Zero Lock-in</div>
                         <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"Tenho utilizado a arquitetura de vocês por meses e nunca me senti tentado a mudar o stack de IA da minha empresa para nenhuma outra base tecnológica."</p>
@@ -388,7 +355,7 @@
                             fathom_AI /
                         </div>
                         <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0a0a0a] border border-white/10 text-[10px] font-mono text-laravel-red font-bold mb-4 uppercase tracking-widest self-start"><span class="w-1.5 h-1.5 rounded-full bg-laravel-red animate-pulse"></span> 2x Faster Deploy</div>
-                        <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"A plataforma de AI Solutions de vocês mudou o jogo de Fathom. O poder desse código nos permite andar rápido e shipar melhorias regularmente."</p>
+                        <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"A plataforma de PROTOCOL 21 de vocês mudou o jogo de Fathom. O poder desse código nos permite andar rápido e shipar melhorias regularmente."</p>
                         <div class="flex items-center gap-4 mt-8">
                             <img src="https://i.pravatar.cc/100?img=17" alt="Jack" class="w-10 h-10 rounded-full border border-white/20">
                             <div>
@@ -492,7 +459,7 @@
                     <svg viewBox="0 0 48 48" class="w-5 h-5 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
                     </svg>
-                    <span class="text-white font-bold tracking-tight">AI Solutions</span>
+                    <span class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">PROTOCOL // 21</span>
                 </div>
                 <p class="text-gray-500 text-xs leading-relaxed max-w-[200px]">A estrutura completa e limpa para Artesãos Modernos e Agentes Criativos desenvolverem soluções inacreditáveis.</p>
             </div>
@@ -531,11 +498,11 @@
         <div class="max-w-[1280px] mx-auto border-x border-t border-white/[0.08] relative px-8 py-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 font-medium">
             <div class="grid-node node-tl"></div>
             <div class="grid-node node-tr"></div>
-            <p>&copy; 2026 AI Solutions Company. All rights reserved.</p>
-            <div class="flex gap-4 mt-4 sm:mt-0">
+            <p>&copy; 2026 PROTOCOL // 21 Company. Todos os direitos reservados.</p>
+            <!-- <div class="flex gap-4 mt-4 sm:mt-0">
                 <a href="#" class="hover:text-laravel-red transition">Twitter</a>
                 <a href="#" class="hover:text-laravel-red transition">GitHub</a>
-            </div>
+            </div> -->
         </div>
     </footer>
 
