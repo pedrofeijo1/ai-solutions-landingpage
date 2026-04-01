@@ -29,6 +29,8 @@
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/index.css">
     
+    <!-- Typebot Integration Support -->
+    <script src="https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/index.js" type="module"></script>
     <script type="module">
         import Typebot from 'https://cdn.jsdelivr.net/npm/@typebot.io/js@0.3/dist/index.js'
 
@@ -46,18 +48,19 @@
                 plano_interesse: metadata.plano_interesse || 'Geral'
             };
 
-            Typebot.initBubble({
-                typebot: typebotId,
-                previewMessage: {
-                    text: "Olá! Posso te ajudar a automatizar sua empresa?",
-                },
-                theme: {
-                    button: { backgroundColor: "#FF2D20", customIconSrc: "https://typebot.io/icons/whatsapp.svg" },
-                },
-                prefilledVariables: utmParams
-            });
-            
-            Typebot.open();
+            if (window.Typebot) {
+                window.Typebot.initBubble({
+                    typebot: typebotId,
+                    previewMessage: {
+                        text: "Olá! Posso te ajudar a automatizar sua empresa?",
+                    },
+                    theme: {
+                        button: { backgroundColor: "#FF2D20", customIconSrc: "https://typebot.io/icons/whatsapp.svg" },
+                    },
+                    prefilledVariables: utmParams
+                });
+                window.Typebot.open();
+            }
         };
     </script>
 </head>
