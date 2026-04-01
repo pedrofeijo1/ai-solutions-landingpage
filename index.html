@@ -25,27 +25,9 @@
             }
         }
     </script>
-    <style>
-        body { background-color: #050505; color: #a1a1aa; overflow-x: hidden; }
-        /* Laravel Grid Intersection Nodes */
-        .grid-node {
-            position: absolute;
-            width: 5px;
-            height: 5px;
-            background-color: #FF2D20;
-            z-index: 20;
-        }
-        .node-tl { top: -2.5px; left: -2.5px; }
-        .node-tr { top: -2.5px; right: -2.5px; }
-        .node-bl { bottom: -2.5px; left: -2.5px; }
-        .node-br { bottom: -2.5px; right: -2.5px; }
-        /* Subtle global noise to match the technical aesthetic */
-        .bg-noise {
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.02;
-            pointer-events: none;
-        }
-    </style>
+    <!-- Standardized CSS -->
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 <body class="font-sans antialiased relative">
     
@@ -53,33 +35,23 @@
 
     <!-- Navigation -->
     <nav class="w-full border-b border-white/[0.08] sticky top-0 bg-[#050505]/90 backdrop-blur-md z-50">
-        <div class="max-w-[1280px] mx-auto h-16 flex items-center justify-between px-6 relative">
+        <div class="max-w-[1280px] mx-auto h-16 flex items-center justify-center px-6 relative">
             
-            <div class="flex items-center gap-8">
-                <!-- Geometrical Logo -->
-                <div class="flex items-center gap-3">
-                    <svg viewBox="0 0 48 48" class="w-7 h-7 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
-                    </svg>
-                    <span class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">AI Solutions</span>
-                </div>
-                <!-- Links -->
-                <div class="hidden md:flex items-center space-x-6 text-[14px] font-medium text-gray-400">
-                    <a href="#" class="hover:text-white transition group flex items-center gap-1">Plataforma <svg class="w-3 h-3 opacity-50 text-white group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
-                    <a href="#" class="hover:text-white transition group flex items-center gap-1">Soluções <svg class="w-3 h-3 opacity-50 text-white group-hover:opacity-100" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></a>
-                    <a href="#pricing" class="hover:text-white transition">Preços</a>
-                    <a href="#" class="hover:text-white transition">Documentação</a>
-                </div>
+            <!-- Absolute Logo (Left) -->
+            <div class="absolute left-6 flex items-center gap-3">
+                <svg viewBox="0 0 48 48" class="w-7 h-7 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
+                </svg>
+                <span class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">AI Solutions</span>
             </div>
-            
-            <div class="flex items-center gap-4">
-                <div class="hidden lg:flex items-center gap-2 px-3 py-1 rounded border border-white/10 bg-white/[0.03] hover:bg-white/[0.06] text-gray-400 text-xs cursor-pointer transition">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-                    <span>Search docs</span>
-                    <span class="border border-white/10 rounded px-1 ml-4 tracking-widest text-[10px]">⌘K</span>
-                </div>
-                <a href="#" class="text-sm font-medium text-gray-400 hover:text-white transition hidden md:block border-l border-white/[0.08] pl-4">Entrar <span class="opacity-50 inline-block ml-0.5 mt-0.5">&#8595;</span></a>
+
+            <!-- Centralized Links -->
+            <div class="hidden md:flex items-center space-x-12 text-[14px] font-medium text-gray-400">
+                <a href="#features" class="hover:text-white transition">Soluções</a>
+                <a href="#testimonials" class="hover:text-white transition">Casos de Sucesso</a>
+                <a href="#pricing" class="hover:text-white transition">Preços</a>
             </div>
+
         </div>
     </nav>
 
@@ -100,11 +72,11 @@
                     Você não precisa mais gastar tempo com tarefas lentas e braçais. Conectamos sistemas web robustos às inteligências artificiais <span class="text-gray-200 font-medium">para assumir e automatizar a maior parte do projeto da sua empresa.</span> Seu time foca 100% no crescimento, enquanto o nosso software faz o trabalho duro incansavelmente.
                 </p>
                 <div class="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto">
-                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-100 text-[#050505] font-bold rounded shadow-[0_4px_30px_0_rgba(255,255,255,0.15)] transition hover:shadow-[0_4px_45px_0_rgba(255,255,255,0.25)] hover:-translate-y-1 flex items-center justify-center gap-2">
+                    <a href="https://wa.me/5531994738828?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Principal%20e%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="w-full sm:w-auto px-8 py-4 bg-white hover:bg-gray-100 text-[#050505] font-bold rounded shadow-[0_4px_30px_0_rgba(255,255,255,0.15)] transition hover:shadow-[0_4px_45px_0_rgba(255,255,255,0.25)] hover:-translate-y-1 flex items-center justify-center gap-2">
                         Reservar Especialista
                     </a>
-                    <a href="#" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/[0.05] text-gray-300 font-semibold rounded transition flex items-center justify-center gap-2">
-                        Entender o impacto
+                    <a href="#testimonials" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-white/20 hover:bg-white/[0.05] text-gray-300 font-semibold rounded transition flex items-center justify-center gap-2">
+                        Ver Estudos de Caso
                     </a>
                 </div>
             </div>
@@ -124,26 +96,26 @@
                     </div>
                     <!-- Code Area -->
                     <div class="p-6 font-mono text-sm leading-[1.6] text-gray-300 overflow-x-auto min-h-[300px]">
-<pre><code><span class="text-gray-500">/**
- * AI Solutions - Full-stack framework
+                        <pre class="flex flex-col gap-1"><code><span class="text-gray-500 typewriter-line anim-line-1 inline-block">/**
+ * Soluções em IA - Framework Full-stack
  */</span>
-<span class="text-[#ff7b72] opacity-80">import</span> { App, Database } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/core'</span>;
-<span class="text-[#ff7b72] opacity-80">import</span> { LLM_Agent, VectorDB } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/intel'</span>;
+<span class="typewriter-line anim-line-2 inline-block"><span class="text-[#ff7b72] opacity-80">import</span> { App, Database } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/core'</span>;</span>
+<span class="typewriter-line anim-line-3 inline-block"><span class="text-[#ff7b72] opacity-80">import</span> { LLM_Agent, VectorDB } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/intel'</span>;</span>
 
-<span class="text-[#79c0ff]">const</span> stack = <span class="text-[#ff7b72] opacity-80">new</span> App({
-    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'postgresql cluster'</span>)
-});
+<span class="typewriter-line anim-line-4 inline-block"><span class="text-[#79c0ff]">const</span> stack = <span class="text-[#ff7b72] opacity-80">new</span> App({</span>
+<span class="typewriter-line anim-line-4 inline-block">    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'cluster postgresql'</span>)</span>
+<span class="typewriter-line anim-line-4 inline-block">});</span>
 
-<span class="text-[#79c0ff]">const</span> brain = <span class="text-[#ff7b72] opacity-80">new</span> LLM_Agent({
-    mcp: <span class="text-[#79c0ff]">true</span>,
-    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'realtime'</span> })
-});
+<span class="typewriter-line anim-line-5 inline-block"><span class="text-[#79c0ff]">const</span> cerebro = <span class="text-[#ff7b72] opacity-80">new</span> LLM_Agent({</span>
+<span class="typewriter-line anim-line-5 inline-block">    mcp: <span class="text-[#79c0ff]">true</span>,</span>
+<span class="typewriter-line anim-line-5 inline-block">    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'tempo-real'</span> })</span>
+<span class="typewriter-line anim-line-5 inline-block">});</span>
 
-stack.attach(brain);
+<span class="typewriter-line anim-line-6 inline-block">stack.attach(cerebro);</span>
 
-stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="text-[#ff7b72] opacity-80">=></span> {
-    console.log(<span class="text-[#a5d6ff]">'🚀 AI Engine operational with RAG.'</span>);
-});</code></pre>
+<span class="typewriter-line anim-line-7 inline-block">stack.deploy(<span class="text-[#a5d6ff]">'producao'</span>, () <span class="text-[#ff7b72] opacity-80">=></span> {</span>
+<span class="typewriter-line anim-line-8 inline-block">    console.log(<span class="text-[#a5d6ff]">'🚀 Motor de IA operacional com RAG.'</span>);</span>
+<span class="typewriter-line anim-line-9-done inline-block">});</span></code></pre>
                     </div>
                 </div>
             </div>
@@ -171,14 +143,12 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
                 <span class="text-white font-extrabold tracking-tight text-xl">ACME Corp</span>
             </div>
             <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100">
-                <span class="text-blue-500 font-bold text-xl flex items-center gap-1"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg> TECHNO</span>
-            </div>
-            <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100">
                 <span class="text-yellow-500 font-serif italic text-xl font-bold">Lemon<span class="text-white">Squeezy</span></span>
             </div>
+            <div class="w-full border-b lg:border-b-0 border-r border-white/[0.08] p-8 flex items-center justify-center transition opacity-60 hover:opacity-100 group">
+                <img src="assets/images/tmt-brasil.png" alt="TMT Brasil" class="h-8 md:h-10 w-auto grayscale group-hover:grayscale-0 transition-all duration-300">
+            </div>
             <div class="w-full border-b lg:border-b-0 p-8 flex items-center justify-center grayscale hover:grayscale-0 transition opacity-80 hover:opacity-100 relative group">
-                <!-- Inner grid node trick just to look cool -->
-                <div class="absolute w-[3px] h-[3px] bg-laravel-red -bottom-[1px] -left-[1px] opacity-0 group-hover:opacity-100"></div>
                 <span class="text-white font-black tracking-widest text-lg">N E X U S</span>
             </div>
         </div>
@@ -197,73 +167,79 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
     </section>
 
     <!-- Features Squared Grid -->
-    <section class="w-full border-b border-white/[0.08] relative bg-[#050505]">
+    <section id="features" class="scroll-mt-16 w-full border-b border-white/[0.08] relative bg-[#050505]">
         <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-1 md:grid-cols-2">
             <div class="grid-node node-bl"></div>
             <div class="grid-node node-br"></div>
-            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/2 -top-[2.5px] -translate-x-1/2 hidden md:block z-10"></div>
-            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/2 -bottom-[2.5px] -translate-x-1/2 hidden md:block z-10"></div>
+            <div class="grid-node left-1/2 -top-0 hidden md:block"></div>
+            <div class="grid-node left-1/2 -bottom-0 hidden md:block"></div>
 
             <!-- Feature 1 (Business) -->
-            <div class="border-b border-r border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
-                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+            <a href="pages/features/feature-automacao.html" class="block border-b border-r border-white/[0.08] p-12 lg:p-20 relative group transition-all duration-500 z-0 hover:z-10 hover:border-laravel-red/30 bg-[#050505] hover:bg-gradient-to-br from-[#110505] to-[#050505]">
+                <div class="absolute inset-0 bg-noise opacity-0 group-hover:opacity-10 duration-500 pointer-events-none"></div>
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02] group-hover:bg-white/[0.05] transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 002-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-4">Automação de Tarefas Operacionais</h3>
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-laravel-red transition-colors">Automação de Tarefas Operacionais</h3>
                 <p class="text-gray-400 leading-relaxed mb-6">Chega de trabalho manual lento e retrabalho. Conectamos sua inteligência artificial para ler e-mails, organizar arquivos, gerar relatórios e interagir diretamente com o sistema da sua empresa, automatizando tudo enquanto seu time foca nas vendas.</p>
-                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Reduzir Custos <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
-            </div>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Saiba Mais <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
 
             <!-- Feature 2 (Business) -->
-            <div class="border-b border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
-                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+            <a href="pages/features/feature-chatbots.html" class="block border-b border-white/[0.08] p-12 lg:p-20 relative group transition-all duration-500 z-0 hover:z-10 hover:border-laravel-red/30 bg-[#050505] hover:bg-gradient-to-bl from-[#110505] to-[#050505]">
+                <div class="absolute inset-0 bg-noise opacity-0 group-hover:opacity-10 duration-500 pointer-events-none"></div>
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02] group-hover:bg-white/[0.05] transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                 </div>
                 <!-- Requested mention of Chatbots and Support -->
-                <h3 class="text-2xl font-bold text-white mb-4">Chatbots de Atendimento Próprios</h3>
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-laravel-red transition-colors">Chatbots de Atendimento Próprios</h3>
                 <p class="text-gray-400 leading-relaxed mb-6">Suporte impressionante e especializado. Criamos Inteligências Artificiais treinadas estritamente com os manuais e regras da sua empresa. Seu novo robô não inventa informação e responde a clientes com uma precisão impecável 24 horas por dia.</p>
-                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Melhorar a Conversão <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
-            </div>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Melhorar a Conversão <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
 
             <!-- Feature 3 (Tech) -->
-            <div class="border-b border-r border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
-                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+            <a href="pages/features/feature-rag.html" class="block border-b border-r border-white/[0.08] p-12 lg:p-20 relative group transition-all duration-500 z-0 hover:z-10 hover:border-laravel-red/30 bg-[#050505] hover:bg-gradient-to-tr from-[#110505] to-[#050505]">
+                <div class="absolute inset-0 bg-noise opacity-0 group-hover:opacity-10 duration-500 pointer-events-none"></div>
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02] group-hover:bg-white/[0.05] transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.58 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.58 4 8 4s8-1.79 8-4M4 7c0-2.21 3.58-4 8-4s8 1.79 8 4m0 5c0 2.21-3.58 4-8 4s-8-1.79-8-4"></path></svg>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-4">RAG Avançado Nativo</h3>
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-laravel-red transition-colors">RAG Avançado Nativo</h3>
                 <p class="text-gray-400 leading-relaxed mb-6">Para alcançar respostas reais livres de "alucinações" de IA, implementamos Bancos de Dados Vetoriais ultra-rápidos. A IA consulta em tempo-real toda a base de conhecimento estruturada da sua corporação (Retrieval-Augmented) antes de fornecer dados.</p>
-                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Engine de Vetores <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
-            </div>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Engine de Vetores <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
 
             <!-- Feature 4 (Tech) -->
-            <div class="border-b border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
-                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+            <a href="pages/features/feature-agentes.html" class="block border-b border-white/[0.08] p-12 lg:p-20 relative group transition-all duration-500 z-0 hover:z-10 hover:border-laravel-red/30 bg-[#050505] hover:bg-gradient-to-t from-[#110505] to-[#050505]">
+                <div class="absolute inset-0 bg-noise opacity-0 group-hover:opacity-10 duration-500 pointer-events-none"></div>
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02] group-hover:bg-white/[0.05] transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-4">MCP & Agentes Autônomos</h3>
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-laravel-red transition-colors">MCP & Agentes Autônomos</h3>
                 <p class="text-gray-400 leading-relaxed mb-6">Conectamos o "cérebro" das arquitetura LLMs aos "braços" do seu software diário. Através do Model Context Protocol, garantimos que agentes autônomos possuam as integrações exatas e permissões nativas para operar em suas APIs corporativas com segurança.</p>
-                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Ecossistema MCP <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
-            </div>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Ecossistema MCP <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
 
             <!-- Feature 5 (Cloud) -->
-            <div class="border-b md:border-b-0 border-r border-white/[0.08] p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
-                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+            <a href="pages/features/feature-cloud.html" class="block border-b md:border-b-0 border-r border-white/[0.08] p-12 lg:p-20 relative group transition-all duration-500 z-0 hover:z-10 hover:border-laravel-red/30 bg-[#050505] hover:bg-gradient-to-tr from-[#110505] to-[#050505]">
+                <div class="absolute inset-0 bg-noise opacity-0 group-hover:opacity-10 duration-500 pointer-events-none"></div>
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02] group-hover:bg-white/[0.05] transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path></svg>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-4">Cloud Customizada Exclusiva</h3>
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-laravel-red transition-colors">Cloud Customizada Exclusiva</h3>
                 <p class="text-gray-400 leading-relaxed mb-6">Projetamos e mantemos a infraestrutura em nuvem de ponta a ponta. Sua arquitetura é preparada estritamente sob medida para receber altos picos de acessos e tráfego intenso através de balanceamento de carga, garantindo estabilidade blindada.</p>
-                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Alta Disponibilidade <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
-            </div>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Alta Disponibilidade <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
 
             <!-- Feature 6 (Scale) -->
-            <div class="p-12 lg:p-20 relative group hover:bg-[#0a0a0a] transition z-0 hover:z-10 shadow-[0_0_0_0_transparent] hover:shadow-[0_0_40px_rgba(255,45,32,0.05)]">
-                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02]">
+            <a href="pages/features/feature-escala.html" class="block p-12 lg:p-20 relative group transition-all duration-500 z-0 hover:z-10 hover:border-laravel-red/30 bg-[#050505] hover:bg-gradient-to-tl from-[#110505] to-[#050505]">
+                <div class="absolute inset-0 bg-noise opacity-0 group-hover:opacity-10 duration-500 pointer-events-none"></div>
+                <div class="w-10 h-10 border border-white/20 rounded flex items-center justify-center mb-8 text-laravel-red bg-white/[0.02] group-hover:bg-white/[0.05] transition-colors">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </div>
-                <h3 class="text-2xl font-bold text-white mb-4">Totalmente Escalável</h3>
+                <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-laravel-red transition-colors">Totalmente Escalável</h3>
                 <p class="text-gray-400 leading-relaxed mb-6">Sua inteligência artificial e banco de dados se expandem horizontalmente à medida que a base de clientes cresce. Sem gargalos de lentidão. Nossa engenharia suporta desde um MVP ágil até a tração massiva de milhões de requisições.</p>
-                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Crescimento Automático <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></div>
-            </div>
+                <div class="text-laravel-red text-sm font-semibold flex items-center gap-1 cursor-pointer">Crescimento Automático <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg></div>
+            </a>
 
         </div>
     </section>
@@ -297,7 +273,7 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
     </section>
 
     <!-- Testimonials Section -->
-    <section class="w-full border-b border-white/[0.08] relative bg-[#050505] overflow-hidden">
+    <section id="testimonials" class="scroll-mt-16 w-full border-b border-white/[0.08] relative bg-[#050505]">
         <!-- Background Gradients (matching the soft bottom-corners glow from the image) -->
         <div class="absolute bottom-0 left-0 w-[600px] h-[600px] bg-laravel-red/10 blur-[150px] rounded-full pointer-events-none translate-y-1/2 -translate-x-1/4"></div>
         <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-laravel-red/10 blur-[150px] rounded-full pointer-events-none translate-y-1/2 translate-x-1/4"></div>
@@ -308,7 +284,7 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
             
             <div class="text-center mb-16 relative z-10">
                 <h2 class="text-[2.25rem] md:text-[3.25rem] font-bold text-white tracking-tight leading-tight">
-                    Confiado por diretores de TI<br>em todo o mundo
+                    Confiado pelos mais exigentes<br>do mercado!
                 </h2>
             </div>
 
@@ -323,6 +299,7 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
                            <svg viewBox="0 0 48 48" class="w-5 h-5 text-white fill-current" xmlns="http://www.w3.org/2000/svg"><path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/></svg> 
                            <span class="text-white font-bold tracking-tight">AI Solutions</span>
                         </div>
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0a0a0a] border border-white/10 text-[10px] font-mono text-green-400 font-bold mb-4 uppercase tracking-widest self-start"><span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> Zero Lock-in</div>
                         <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"Tenho utilizado a arquitetura de vocês por meses e nunca me senti tentado a mudar o stack de IA da minha empresa para nenhuma outra base tecnológica."</p>
                         <div class="flex items-center gap-4 mt-8">
                             <img src="https://i.pravatar.cc/100?img=11" alt="Adam" class="w-10 h-10 rounded-full border border-white/20">
@@ -332,24 +309,27 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
                             </div>
                         </div>
                     </div>
-                    
-                    <!-- Normal Short -->
-                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Uma arquitetura que é como um respiro de ar fresco. Integrações brilhantes, MCPs impecáveis e código absurdamente elegante."</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <div>
-                                <h4 class="text-gray-200 font-bold text-sm">Erika Souza</h4>
-                                <p class="text-gray-500 text-xs">Criadora, MiniCLI</p>
-                            </div>
-                            <img src="https://i.pravatar.cc/100?img=9" alt="Erika" class="w-10 h-10 rounded-full border border-white/10">
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Col 2 -->
                 <div class="flex flex-col gap-6">
+                    <!-- Douglas Ferreira Testimonial (Gray Card) -->
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition relative overflow-hidden group">
+                        <!-- Data Tag -->
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0a0a0a] border border-white/10 text-[10px] font-mono text-[#79c0ff] font-bold mb-6 uppercase tracking-widest self-start opacity-70 group-hover:opacity-100 transition"><span class="w-1.5 h-1.5 rounded-full bg-[#79c0ff]"></span> Dados Confiáveis</div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"O projeto de integração entre marketing e CRM executado pela equipe foi fundamental. Entregaram dados confiáveis e rastreio completo da jornada do lead, elevando a qualidade das nossas análises e decisões."</p>
+                        <div class="flex items-center justify-between mt-auto">
+                            <div>
+                                <h4 class="text-gray-200 font-bold text-sm">Douglas Ferreira</h4>
+                                <p class="text-gray-500 text-xs">Gestor de Planejamento, TMT Brasil</p>
+                            </div>
+                            <img src="assets/images/douglas-ferreira.jpg" alt="Douglas Ferreira" class="w-10 h-10 rounded-full border border-white/10 object-cover">
+                        </div>
+                    </div>
+                    
                     <!-- Normal Short -->
-                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
+                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition relative overflow-hidden group">
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0a0a0a] border border-white/10 text-[10px] font-mono text-[#ff7b72] font-bold mb-6 uppercase tracking-widest self-start opacity-70 group-hover:opacity-100 transition"><span class="w-1.5 h-1.5 rounded-full bg-[#ff7b72]"></span> Escala Absoluta</div>
                         <p class="text-gray-300 text-sm leading-relaxed mb-8">"Esses modelos especializados operam de forma perfeita no dia-a-dia da nossa operação em larga escala."</p>
                         <div class="flex items-center justify-between mt-auto">
                             <div>
@@ -360,50 +340,19 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
                         </div>
                     </div>
                     
-                    <!-- Normal Short -->
-                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Elegância dos sistemas web combinada à inteligência artificial de forma magistral. O melhor do mercado."</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <div>
-                                <h4 class="text-gray-200 font-bold text-sm">Chandresh Patel</h4>
-                                <p class="text-gray-500 text-xs">CEO, Bacancy</p>
-                            </div>
-                            <img src="https://i.pravatar.cc/100?img=13" alt="Chandresh" class="w-10 h-10 rounded-full border border-white/10">
-                        </div>
-                    </div>
 
-                    <!-- Normal Short -->
-                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"O framework, a fundação e a IA atuando em RAG... É o pacote inteiro pronto em semanas."</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <div>
-                                <h4 class="text-gray-200 font-bold text-sm">Zuzana Kunckova</h4>
-                                <p class="text-gray-500 text-xs">Fundadora, Larabelles</p>
-                            </div>
-                            <img src="https://i.pravatar.cc/100?img=33" alt="Zuzana" class="w-10 h-10 rounded-full border border-white/10">
-                        </div>
-                    </div>
+
+
                 </div>
 
                 <!-- Col 3 -->
                 <div class="flex flex-col gap-6">
-                    <!-- Normal Short -->
-                    <div class="bg-white/[0.02] border border-white/[0.08] rounded-2xl p-8 flex flex-col hover:bg-white/[0.04] transition">
-                        <p class="text-gray-300 text-sm leading-relaxed mb-8">"Adicionar LLMs tirou todo o sofrimento de construir as nossas novas bases de conhecimento interativas."</p>
-                        <div class="flex items-center justify-between mt-auto">
-                            <div>
-                                <h4 class="text-gray-200 font-bold text-sm">Aaron Francis</h4>
-                                <p class="text-gray-500 text-xs">Try Hard Studios</p>
-                            </div>
-                            <img src="https://i.pravatar.cc/100?img=15" alt="Aaron" class="w-10 h-10 rounded-full border border-white/10">
-                        </div>
-                    </div>
-
                     <!-- Highlighted Tall (Last) -->
                     <div class="bg-gradient-to-br from-[#1a0505] to-[#0a0a0a] border border-laravel-red/30 rounded-2xl py-10 px-8 flex flex-col shadow-[0_4px_30px_rgba(255,45,32,0.1)] h-full lg:min-h-[380px] group transition hover:-translate-y-1">
                         <div class="flex items-center gap-1 opacity-80 mb-6 font-mono text-white text-sm">
                             fathom_AI /
                         </div>
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#0a0a0a] border border-white/10 text-[10px] font-mono text-laravel-red font-bold mb-4 uppercase tracking-widest self-start"><span class="w-1.5 h-1.5 rounded-full bg-laravel-red animate-pulse"></span> 2x Faster Deploy</div>
                         <p class="text-white text-[1.15rem] lg:text-xl font-medium leading-relaxed mb-auto">"A plataforma de AI Solutions de vocês mudou o jogo de Fathom. O poder desse código nos permite andar rápido e shipar melhorias regularmente."</p>
                         <div class="flex items-center gap-4 mt-8">
                             <img src="https://i.pravatar.cc/100?img=17" alt="Jack" class="w-10 h-10 rounded-full border border-white/20">
@@ -420,19 +369,19 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
     </section>
 
     <!-- Pricing Section -->
-    <section class="w-full border-b border-white/[0.08] relative bg-[#050505]" id="pricing">
+    <section id="pricing" class="scroll-mt-16 w-full border-b border-white/[0.08] relative bg-[#050505]">
         <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-1 lg:grid-cols-3">
             <div class="grid-node node-bl"></div>
             <div class="grid-node node-br"></div>
-            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/3 -top-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
-            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-[66.666%] -top-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
-            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-1/3 -bottom-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
-            <div class="absolute w-[5px] h-[5px] bg-laravel-red left-[66.666%] -bottom-[2.5px] -translate-x-1/2 hidden lg:block z-10"></div>
+            <div class="grid-node left-1/3 -top-0 hidden lg:block"></div>
+            <div class="grid-node left-[66.666%] -top-0 hidden lg:block"></div>
+            <div class="grid-node left-1/3 -bottom-0 hidden lg:block"></div>
+            <div class="grid-node left-[66.666%] -bottom-0 hidden lg:block"></div>
             
             <!-- Pricing 1 -->
             <div class="border-b lg:border-b-0 border-r border-white/[0.08] p-12 relative flex flex-col group hover:bg-[#0a0a0a] transition">
-                <h3 class="text-xl font-bold text-gray-200 mb-1 tracking-tight">MVP AI Web</h3>
-                <p class="text-sm text-gray-500 mb-8 border-b border-white/[0.08] pb-8">Validação de ideia e prototipagem inteligente estruturada em frameworks modernos.</p>
+                <h3 class="text-xl font-bold text-gray-200 mb-1 tracking-tight">Prova de Conceito (PoC)</h3>
+                <p class="text-sm text-gray-500 mb-8 border-b border-white/[0.08] pb-8">Validação técnica avançada e prototipagem inteligente em frameworks modernos corporativos.</p>
                 <div class="text-4xl font-bold text-white tracking-tighter mb-8"><span class="text-xl align-top text-gray-500 font-normal">Custo: P/</span>Projeto</div>
                 <div class="flex-grow">
                     <ul class="text-sm text-gray-400 space-y-3 font-medium">
@@ -441,24 +390,24 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
                         <li class="flex gap-2">✓ Lógica e Banco de Dados Limpo</li>
                     </ul>
                 </div>
-                <button class="mt-12 w-full py-2.5 border border-white/20 text-white rounded text-sm font-semibold hover:bg-white hover:text-black transition">Conversar Agora</button>
+                <a href="https://wa.me/5531994738828?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20plano%20Prova%20de%20Conceito%20%28PoC%29%20que%20vi%20na%20p%C3%A1gina%20Principal." target="_blank" class="block text-center mt-12 w-full py-2.5 border border-white/20 text-white rounded text-sm font-semibold hover:bg-white hover:text-black transition">Falar com Consultor</a>
             </div>
 
             <!-- Pricing 2 -->
-            <div class="border-b lg:border-b-0 border-r border-[#FF2D20]/40 bg-[#0a0a0a] p-12 relative flex flex-col shadow-[inset_0_0_80px_rgba(255,45,32,0.03)] opacity-100 z-10">
+            <div class="border lg:border-r border-laravel-red/30 bg-[#0a0a0a] p-12 relative flex flex-col shadow-[inset_0_0_80px_rgba(255,45,32,0.03)] opacity-100 z-10">
                 <div class="absolute top-0 right-0 bg-laravel-red text-white text-[10px] font-bold px-3 py-1 uppercase tracking-widest rounded-bl-lg">Enterprise</div>
                 <h3 class="text-xl font-bold text-laravel-red mb-1 tracking-tight">Escala & IAs Híbridas</h3>
                 <p class="text-sm text-gray-400 mb-8 border-b border-white/[0.08] pb-8">Automação de múltiplos agentes em sistemas críticos que não podem falhar ou alucinar.</p>
                 <div class="text-4xl font-bold text-white tracking-tighter mb-8"><span class="text-xl align-top text-gray-500 font-normal mr-1">Retainer /</span>Fee</div>
                 <div class="flex-grow">
                     <ul class="text-sm text-gray-300 space-y-3 font-medium">
-                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Tudo do plano MVP</li>
-                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> RAG nativo construído sobre Vector Databases Escalonáveis</li>
-                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Fine-tuning e Modelos Especializados Open Source</li>
-                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Integração Direta via MCP</li>
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Tudo do ambiente de PoC</li>
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Consultas em Vector Databases Escalonáveis</li>
+                        <li class="flex gap-2"><span class="text-laravel-red">✓</span> Modelos Específicos Instalados (On-Premise)</li>
+                        <li class="flex gap-2 items-center"><span class="text-laravel-red">✓</span> SLA Corporativo & Integração via MCP <span class="bg-laravel-red/20 text-laravel-red text-[9px] px-1.5 py-0.5 rounded ml-1 font-bold">CRÍTICO</span></li>
                     </ul>
                 </div>
-                <button class="mt-12 w-full py-2.5 bg-laravel-red hover:bg-[#ff4d42] text-white rounded text-sm font-semibold transition shadow-md">Agendar Descoberta</button>
+                <a href="https://wa.me/5531994738828?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20plano%20Enterprise%20%28Escala%20e%20IAs%20H%C3%ADbridas%29%20que%20vi%20na%20p%C3%A1gina%20Principal." target="_blank" class="block text-center mt-12 w-full py-2.5 bg-laravel-red hover:bg-[#ff4d42] text-white rounded text-sm font-semibold transition shadow-md">Agendar Descoberta</a>
             </div>
 
             <!-- Pricing 3 -->
@@ -473,7 +422,7 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
                         <li class="flex gap-2">✓ Arquitetura escalável modular</li>
                     </ul>
                 </div>
-                <button class="mt-12 w-full py-2.5 border border-white/20 text-white rounded text-sm font-semibold hover:bg-white hover:text-black transition">Ver Pacotes</button>
+                <a href="https://wa.me/5531994738828?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20plano%20de%20Sprints%20Dedicados%20que%20vi%20na%20p%C3%A1gina%20Principal." target="_blank" class="block text-center mt-12 w-full py-2.5 border border-white/20 text-white rounded text-sm font-semibold hover:bg-white hover:text-black transition">Pacotes de Escopo</a>
             </div>
         </div>
     </section>
@@ -484,8 +433,6 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
         <div class="absolute inset-0 z-0 opacity-15 pointer-events-none mix-blend-screen" style="background-image: url('data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'34\' viewBox=\'0 0 60 34\'%3E%3Cpath d=\'M30 0L60 17L30 34L0 17Z\' fill=\'none\' stroke=\'rgba(255,255,255,0.7)\' stroke-width=\'0.5\'/%3E%3C/svg%3E'); background-size: 60px 34px; mask-image: linear-gradient(to bottom, transparent 50%, black 100%); -webkit-mask-image: linear-gradient(to bottom, transparent 50%, black 100%);"></div>
 
         <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative px-6 py-32 md:py-48 text-center flex flex-col items-center justify-center z-10">
-            <div class="grid-node node-bl"></div>
-            <div class="grid-node node-br"></div>
             
             <h2 class="text-4xl md:text-[3.5rem] lg:text-[4.25rem] font-bold text-white tracking-tight leading-[1.08] mb-12">
                 Pronto para dominar o seu mercado?<br>
@@ -493,7 +440,7 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
             </h2>
             
             <div class="flex items-center justify-center">
-                <a href="#contact" class="px-12 py-5 bg-laravel-red hover:bg-[#ff4d42] text-white font-bold rounded shadow-[0_4px_14px_0_rgba(255,45,32,0.39)] transition flex items-center justify-center gap-3 text-lg hover:-translate-y-1 hover:shadow-[0_6px_25px_0_rgba(255,45,32,0.45)]">
+                <a href="https://wa.me/5531994738828?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20Principal%20e%20gostaria%20de%20falar%20com%20um%20especialista." target="_blank" class="px-12 py-5 bg-laravel-red hover:bg-[#ff4d42] text-white font-bold rounded shadow-[0_4px_14px_0_rgba(255,45,32,0.39)] transition flex items-center justify-center gap-3 text-lg hover:-translate-y-1 hover:shadow-[0_6px_25px_0_rgba(255,45,32,0.45)]">
                     Agendar Especialista <span>&rarr;</span>
                 </a>
             </div>
@@ -501,9 +448,10 @@ stack.deploy(<span class="text-[#a5d6ff]">'production'</span>, () <span class="t
     </section>
 
     <!-- Footer Area (Grid Based) -->
-    <footer class="w-full relative bg-[#050505]">
+    <footer class="w-full relative bg-[#050505] z-20">
         <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-2 md:grid-cols-4 py-16">
-            
+            <div class="grid-node node-tl"></div>
+            <div class="grid-node node-tr"></div>
             <div class="col-span-2 md:col-span-1 p-8 pt-0">
                 <div class="flex items-center gap-2 mb-4">
                     <svg viewBox="0 0 48 48" class="w-5 h-5 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">

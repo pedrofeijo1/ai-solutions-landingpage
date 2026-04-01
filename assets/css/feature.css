@@ -1,0 +1,13 @@
+/* 
+   FEATURE PAGE - SPECIFIC VISUALS 
+   Logic for data bars and stats bars
+*/
+
+.data-bar-anim {
+    width: 0;
+    animation: fillBar 1.5s ease-out forwards;
+}
+
+@keyframes fillBar {
+    to { width: var(--target-width); }
+}

@@ -1,0 +1,51 @@
+/* 
+   AI SOLUTIONS - GLOBAL DESIGN SYSTEM
+   Common Styles & Grid Engine
+*/
+
+html { scroll-behavior: smooth; }
+body { background-color: #050505; color: #a1a1aa; overflow-x: hidden; }
+
+/* Grid Intersection Nodes - Unified Engine */
+.grid-node {
+    position: absolute;
+    width: 6px; /* Slightly larger for better visibility */
+    height: 6px;
+    background-color: #FF2D20;
+    z-index: 100; /* Super high priority */
+    pointer-events: none;
+}
+
+/* Precise center-anchored nodes */
+.grid-node {
+    transform: translate(-50%, -50%);
+    left: 50%; /* Default for middle nodes */
+}
+
+/* Specific corner anchors */
+.node-tl { top: 0; left: 0; transform: translate(-50%, -50%); }
+.node-tr { top: 0; left: 100%; transform: translate(-50%, -50%); }
+.node-bl { bottom: 0; left: 0; transform: translate(-50%, 50%); }
+.node-br { bottom: 0; left: 100%; transform: translate(-50%, 50%); }
+
+/* Horizontal mid-border nodes */
+.grid-node[class*="-top-0"] { top: 0; }
+.grid-node[class*="-bottom-0"] { bottom: 0; transform: translate(-50%, 50%); }
+
+/* Subtle global noise to match the technical aesthetic */
+.bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+/* Smooth transitions for links and buttons */
+.transition-standard {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #050505; }
+::-webkit-scrollbar-thumb { background: #1a1a1a; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #FF2D20; }

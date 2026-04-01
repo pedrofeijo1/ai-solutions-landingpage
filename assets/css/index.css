@@ -1,0 +1,33 @@
+/* 
+   INDEX PAGE - SPECIFIC VISUALS 
+   Logic for terminal sequence and hero gradients
+*/
+
+/* Terminal Typing Animation */
+@keyframes typing {
+    from { width: 0; opacity: 0; }
+    1% { opacity: 1; }
+    to { width: 100%; opacity: 1; }
+}
+@keyframes blink {
+    50% { border-color: transparent }
+}
+
+.typewriter-line {
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    opacity: 0;
+    border-right: 2px solid transparent;
+}
+
+.anim-line-1 { animation: typing 0.5s steps(30, end) forwards; border-right-color: #FF2D20; animation-delay: 0.5s; }
+.anim-line-2 { animation: typing 0.8s steps(40, end) forwards; animation-delay: 1.2s; }
+.anim-line-3 { animation: typing 0.4s steps(20, end) forwards; animation-delay: 2.2s; }
+.anim-line-4 { animation: typing 0.6s steps(30, end) forwards; animation-delay: 2.8s; }
+.anim-line-5 { animation: typing 0.4s steps(20, end) forwards; animation-delay: 3.6s; }
+.anim-line-6 { animation: typing 0.5s steps(30, end) forwards; animation-delay: 4.2s; }
+.anim-line-7 { animation: typing 0.2s steps(10, end) forwards; animation-delay: 4.9s; }
+.anim-line-8 { animation: typing 0.8s steps(40, end) forwards; animation-delay: 5.3s; }
+.anim-line-9 { animation: typing 0.1s steps(5, end) forwards; border-right-color: #FF2D20; animation-delay: 6.3s; animation-direction: normal; animation-iteration-count: 1; }
+.anim-line-9-done { animation: typing 0.1s forwards, blink .5s step-end infinite alternate; animation-delay: 6.3s, 6.4s; }
