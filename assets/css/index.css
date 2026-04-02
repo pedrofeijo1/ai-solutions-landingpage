@@ -27,11 +27,16 @@
 }
 
 .anim-line-1 { animation: typing 0.5s steps(30, end) forwards, type-cursor 0.7s forwards; animation-delay: 0.5s; }
-.anim-line-2 { animation: typing 0.8s steps(40, end) forwards, type-cursor 1.0s forwards; animation-delay: 1.2s; }
-.anim-line-3 { animation: typing 0.4s steps(20, end) forwards, type-cursor 0.6s forwards; animation-delay: 2.2s; }
-.anim-line-4 { animation: typing 0.6s steps(30, end) forwards, type-cursor 0.8s forwards; animation-delay: 2.8s; }
-.anim-line-5 { animation: typing 0.4s steps(20, end) forwards, type-cursor 0.6s forwards; animation-delay: 3.6s; }
-.anim-line-6 { animation: typing 0.5s steps(30, end) forwards, type-cursor 0.7s forwards; animation-delay: 4.2s; }
-.anim-line-7 { animation: typing 0.2s steps(10, end) forwards, type-cursor 0.4s forwards; animation-delay: 4.9s; }
-.anim-line-8 { animation: typing 0.8s steps(40, end) forwards, type-cursor 1.0s forwards; animation-delay: 5.3s; }
-.anim-line-9-done { animation: typing 0.1s forwards, blink .8s step-end infinite alternate; animation-delay: 6.3s, 6.4s; border-right-color: transparent; }
+.anim-line-2 { animation: typing 0.6s steps(40, end) forwards, type-cursor 0.8s forwards; animation-delay: 1.2s; }
+.anim-line-3 { animation: typing 0.6s steps(40, end) forwards, type-cursor 0.9s forwards; animation-delay: 2.0s; }
+.anim-line-4 { animation: typing 0.4s steps(20, end) forwards, type-cursor 0.5s forwards; animation-delay: 2.9s; }
+.anim-line-5 { animation: typing 0.5s steps(30, end) forwards, type-cursor 0.6s forwards; animation-delay: 3.4s; }
+.anim-line-6 { animation: typing 0.2s steps(10, end) forwards, type-cursor 0.5s forwards; animation-delay: 4.0s; }
+.anim-line-7 { animation: typing 0.4s steps(20, end) forwards, type-cursor 0.5s forwards; animation-delay: 4.5s; }
+.anim-line-8 { animation: typing 0.3s steps(15, end) forwards, type-cursor 0.4s forwards; animation-delay: 5.0s; }
+.anim-line-9 { animation: typing 0.6s steps(40, end) forwards, type-cursor 0.7s forwards; animation-delay: 5.4s; }
+.anim-line-10 { animation: typing 0.2s steps(10, end) forwards, type-cursor 0.6s forwards; animation-delay: 6.1s; }
+.anim-line-11 { animation: typing 0.4s steps(20, end) forwards, type-cursor 0.8s forwards; animation-delay: 6.7s; }
+.anim-line-12 { animation: typing 0.4s steps(20, end) forwards, type-cursor 0.5s forwards; animation-delay: 7.5s; }
+.anim-line-13 { animation: typing 0.6s steps(40, end) forwards, type-cursor 0.7s forwards; animation-delay: 8.0s; }
+.anim-line-14-done { animation: typing 0.2s steps(10, end) forwards, blink .8s step-end infinite alternate; animation-delay: 8.7s, 8.9s; border-right-color: transparent; }

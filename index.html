@@ -105,19 +105,19 @@
 <span class="typewriter-line anim-line-3 inline-block"><span class="text-[#ff7b72] opacity-80">import</span> { LLM_Agent, VectorDB } <span class="text-[#ff7b72] opacity-80">from</span> <span class="text-[#a5d6ff]">'@ai/intel'</span>;</span>
 
 <span class="typewriter-line anim-line-4 inline-block"><span class="text-[#79c0ff]">const</span> stack = <span class="text-[#ff7b72] opacity-80">new</span> App({</span>
-    <span class="typewriter-line anim-line-4 inline-block">    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'cluster postgresql'</span>)</span>
-<span class="typewriter-line anim-line-4 inline-block">});</span>
+    <span class="typewriter-line anim-line-5 inline-block">    db: <span class="text-[#ff7b72] opacity-80">new</span> Database(<span class="text-[#a5d6ff]">'cluster postgresql'</span>)</span>
+<span class="typewriter-line anim-line-6 inline-block">});</span>
 
-<span class="typewriter-line anim-line-5 inline-block"><span class="text-[#79c0ff]">const</span> cerebro = <span class="text-[#ff7b72] opacity-80">new</span> LLM_Agent({</span>
-    <span class="typewriter-line anim-line-5 inline-block">    mcp: <span class="text-[#79c0ff]">true</span>,</span>
-    <span class="typewriter-line anim-line-5 inline-block">    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'tempo-real'</span> })</span>
-<span class="typewriter-line anim-line-5 inline-block">});</span>
+<span class="typewriter-line anim-line-7 inline-block"><span class="text-[#79c0ff]">const</span> cerebro = <span class="text-[#ff7b72] opacity-80">new</span> LLM_Agent({</span>
+    <span class="typewriter-line anim-line-8 inline-block">    mcp: <span class="text-[#79c0ff]">true</span>,</span>
+    <span class="typewriter-line anim-line-9 inline-block">    rag_memory: <span class="text-[#ff7b72] opacity-80">new</span> VectorDB({ sync: <span class="text-[#a5d6ff]">'tempo-real'</span> })</span>
+<span class="typewriter-line anim-line-10 inline-block">});</span>
 
-<span class="typewriter-line anim-line-6 inline-block">stack.attach(cerebro);</span>
+<span class="typewriter-line anim-line-11 inline-block">stack.attach(cerebro);</span>
 
-<span class="typewriter-line anim-line-7 inline-block">stack.deploy(<span class="text-[#a5d6ff]">'producao'</span>, () <span class="text-[#ff7b72] opacity-80">=></span> {</span>
-    <span class="typewriter-line anim-line-8 inline-block">    console.log(<span class="text-[#a5d6ff]">'🚀 Motor de IA operacional com RAG.'</span>);</span>
-<span class="typewriter-line anim-line-9-done inline-block">});</span></code></pre>
+<span class="typewriter-line anim-line-12 inline-block">stack.deploy(<span class="text-[#a5d6ff]">'producao'</span>, () <span class="text-[#ff7b72] opacity-80">=></span> {</span>
+    <span class="typewriter-line anim-line-13 inline-block">    console.log(<span class="text-[#a5d6ff]">'🚀 Motor de IA operacional com RAG.'</span>);</span>
+<span class="typewriter-line anim-line-14-done inline-block">});</span></code></pre>
                     </div>
                 </div>
             </div>
