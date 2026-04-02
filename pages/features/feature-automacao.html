@@ -42,7 +42,7 @@
                 <svg viewBox="0 0 48 48" class="w-7 h-7 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
                 </svg>
-                <a href="../../index.html" class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer">PROTOCOL // 21</a>
+                <a href="../../index.html" class="text-white font-semibold text-lg hover:text-laravel-red transition cursor-pointer"><img src="../../assets/images/logo-vertical.png" alt="PROTOCOL // 21" class="h-12 md:h-16 hover:opacity-80 transition cursor-pointer"></a>
             </div>
 
             <!-- Header CTA (Right) -->
@@ -174,13 +174,58 @@
     </section>
 
     <footer class="w-full relative bg-[#050505] z-20">
-        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative px-8 py-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 font-medium">
+        <div class="max-w-[1280px] mx-auto border-x border-white/[0.08] relative grid grid-cols-2 md:grid-cols-5 py-16">
+            <div class="grid-node node-tl"></div>
+            <div class="grid-node node-tr"></div>
+            <div class="col-span-2 md:col-span-2 p-8 pt-0">
+                <div class="flex items-center gap-2 mb-4">
+                    <svg viewBox="0 0 48 48" class="w-5 h-5 text-laravel-red fill-current" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.9 8.2v31.6l22.2-15.8-22.2-15.8z"/>
+                    </svg>
+                    <a href="../../index.html"><img src="../../assets/images/logo-vertical.png" alt="PROTOCOL // 21" class="h-12 hover:opacity-80 transition cursor-pointer"></a>
+                </div>
+                <p class="text-gray-500 text-[10px] leading-relaxed max-w-[200px] opacity-80 uppercase tracking-widest font-bold font-mono">Revolucionando operações com Automações e Agentes de Inteligência Artificial.</p>
+            </div>
+            
+            <div class="col-span-1 p-8 pt-0">
+                <h4 class="text-white font-bold text-sm mb-4">Features</h4>
+                <ul class="text-gray-500 text-xs space-y-2">
+                    <li><a href="feature-agentes.html" class="hover:text-laravel-red transition">Agentes Autônomos</a></li>
+                    <li><a href="feature-automacao.html" class="hover:text-laravel-red transition">Automação de Tarefas</a></li>
+                    <li><a href="feature-rag.html" class="hover:text-laravel-red transition">RAG Corporativo</a></li>
+                    <li><a href="feature-chatbots.html" class="hover:text-laravel-red transition">Chatbots Próprios</a></li>
+                    <li><a href="feature-cloud.html" class="hover:text-laravel-red transition">Custom Cloud</a></li>
+                    <li><a href="feature-escala.html" class="hover:text-laravel-red transition">Escala Ilimitada</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-1 p-8 pt-0">
+                <h4 class="text-white font-bold text-sm mb-4">Planos</h4>
+                <ul class="text-gray-500 text-xs space-y-2">
+                    <li><a href="javascript:void(0)" onclick="openTypebot({pagina_origem: 'Footer', plano_interesse: 'PoC'})" class="hover:text-laravel-red transition">Prova de Conceito (PoC)</a></li>
+                    <li><a href="javascript:void(0)" onclick="openTypebot({pagina_origem: 'Footer', plano_interesse: 'Enterprise'})" class="hover:text-laravel-red transition">Enterprise</a></li>
+                    <li><a href="javascript:void(0)" onclick="openTypebot({pagina_origem: 'Footer', plano_interesse: 'Sprints Dedicados'})" class="hover:text-laravel-red transition">Sprints Dedicados</a></li>
+                </ul>
+            </div>
+
+            <div class="col-span-2 md:col-span-1 p-8 pt-0">
+                <h4 class="text-white font-bold text-sm mb-4">Clientes</h4>
+                <ul class="text-gray-500 text-xs space-y-2">
+                    <li class="hover:text-laravel-red transition cursor-default">TailwindTech</li>
+                    <li class="hover:text-laravel-red transition cursor-default">TMT Brasil</li>
+                    <li class="hover:text-laravel-red transition cursor-default">Harvard Art Museums</li>
+                    <li class="hover:text-laravel-red transition cursor-default">Fathom Analytics</li>
+                </ul>
+            </div>
+        </div>
+        <!-- Footer Bottom -->
+        <div class="max-w-[1280px] mx-auto border-x border-t border-white/[0.08] relative px-8 py-6 flex flex-col sm:flex-row justify-between items-center text-xs text-gray-600 font-medium">
             <div class="grid-node node-tl"></div><div class="grid-node node-tr"></div>
-            <p>&copy; 2026 PROTOCOL 21copy; 2026 PROTOCOL // 21 Company. All rights reserved. <span class="ml-4">&bull; <a href="../../index.html" class="hover:text-white transition inline-block ml-4">Retornar à Home</a></span></p>
-            <div class="flex gap-4 mt-4 sm:mt-0">
+            <p>&copy; 2026 PROTOCOL // 21. Todos os direitos reservados.<span class="ml-4">&bull; <a href="../../index.html" class="hover:text-white transition inline-block ml-4">Retornar à Home</a></span></p>
+            <!-- <div class="flex gap-4 mt-4 sm:mt-0">
                 <a href="#" class="hover:text-laravel-red transition">Twitter</a>
                 <a href="#" class="hover:text-laravel-red transition">GitHub</a>
-            </div>
+            </div> -->
         </div>
     </footer>
 
